@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Search Kickoff — Cygnet × P2P Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --bg-sec: #f8f8f6;
+  --bg-ter: #eeecea;
+  --border: rgba(0,0,0,0.10);
+  --border-med: rgba(0,0,0,0.18);
+  --text: #141414;
+  --text-sec: #5a5a5a;
+  --text-hint: #aaa;
+
+  --rw: #e85d26;
+  --rw-dark: #c94d1e;
+  --rw-light: #fef0eb;
+  --rw-border: #f5a887;
+
+  --p2p: #2d3282;
+  --p2p-mid: #3a3b8a;
+  --p2p-light: #eaebf7;
+  --p2p-border: #a0a3d4;
+
+  --navy: #1a1d4e;
+  --navy-mid: #252870;
+
+  --green: #2e6b0a;
+  --green-light: #eaf3de;
+  --green-border: #8ec44a;
+
+  --amber: #b86e00;
+  --r: 6px; --rm: 10px; --rl: 14px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #1a1d4e 0%, #2d3282 40%, #e85d26 100%);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 2.5rem 1.5rem;
+}
+
+.page-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: var(--bg);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 60px rgba(0,0,0,0.28), 0 2px 12px rgba(0,0,0,0.12);
+}
+
+/* ===================== HERO HEADER ===================== */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, #3d1f6e 100%);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,93,38,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--p2p) 0%, var(--rw) 50%, var(--p2p) 100%);
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2.5rem;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* LOGO SLOTS */
+.logo-slot { display: flex; align-items: center; gap: 8px; position: relative; flex-shrink: 0; }
+.logo-slot input[type=file] { display: none; }
+.logo-img { height: 44px; max-width: 140px; object-fit: contain; cursor: pointer; filter: brightness(1.05); }
+.logo-placeholder {
+  display: flex; align-items: center; gap: 7px;
+  padding: 9px 16px;
+  border: 1.5px dashed rgba(255,255,255,0.3);
+  border-radius: var(--rm);
+  font-size: 12px; color: rgba(255,255,255,0.65);
+  cursor: pointer; transition: all .2s;
+  white-space: nowrap;
+  background: rgba(255,255,255,0.06);
+}
+.logo-placeholder:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.12); color: #fff; }
+.logo-clear {
+  position: absolute; top: -8px; right: -8px;
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%; width: 22px; height: 22px;
+  display: none; align-items: center; justify-content: center;
+  font-size: 10px; color: #fff; cursor: pointer;
+}
+.logo-slot:hover .logo-clear { display: flex; }
+
+/* HERO CENTER */
+.hc { text-align: center; flex: 1; }
+.hc-eyebrow {
+  font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 6px;
+}
+.hc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.hc-title span { color: var(--rw); }
+.hc-sub {
+  font-size: 12px; color: rgba(255,255,255,0.55);
+  letter-spacing: .06em; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.hc-sub::before, .hc-sub::after {
+  content: ''; display: inline-block;
+  width: 30px; height: 1px; background: rgba(255,255,255,0.2);
+}
+
+/* ===================== BODY ===================== */
+.body-wrap { padding: 2rem 2.5rem 2.5rem; }
+
+/* TOOLBAR */
+.toolbar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 1.5rem; flex-wrap: wrap;
+  padding: .85rem 1.25rem;
+  background: var(--bg-sec);
+  border-radius: var(--rm);
+  border: 0.5px solid var(--border);
+}
+.tb-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif;
+  padding: 7px 15px; border-radius: var(--r);
+  border: 0.5px solid var(--border-med);
+  background: var(--bg); color: var(--text);
+  cursor: pointer; transition: all .15s;
+}
+.tb-btn:hover { background: var(--bg-ter); border-color: var(--border-med); }
+.tb-btn.primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+.tb-btn.primary:hover { background: var(--p2p); }
+.tb-btn.danger { color: #c0392b; border-color: #e8a0a0; }
+.tb-btn.danger:hover { background: #fdf0f0; }
+.save-status { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-sec); }
+.save-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); transition: background .3s; }
+.save-dot.unsaved { background: var(--amber); }
+
+/* STAT CHIPS */
+.stat-chips { display: flex; gap: 12px; margin-bottom: 1.25rem; }
+.sc {
+  flex: 1; padding: .9rem 1rem;
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: var(--rm); text-align: center;
+  position: relative; overflow: hidden;
+}
+.sc::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+}
+.sc:nth-child(1)::before { background: var(--navy); }
+.sc:nth-child(2)::before { background: var(--rw); }
+.sc:nth-child(3)::before { background: #f0b429; }
+.sc:nth-child(4)::before { background: var(--green); }
+.sc .n { font-size: 26px; font-weight: 500; color: var(--text); display: block; line-height: 1.2; }
+.sc .l { font-size: 10px; color: var(--text-sec); text-transform: uppercase; letter-spacing: .07em; }
+.accent { color: var(--rw); }
+
+/* PROGRESS */
+.prog-wrap {
+  margin-bottom: 1.75rem; padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, var(--navy) 0%, var(--p2p-mid) 100%);
+  border-radius: var(--rm); display: flex; align-items: center; gap: 16px;
+}
+.prog-label { font-size: 13px; color: rgba(255,255,255,0.75); white-space: nowrap; font-weight: 500; }
+.prog-bg { flex: 1; height: 8px; background: rgba(255,255,255,0.15); border-radius: 99px; overflow: hidden; }
+.prog-fill-bar { height: 100%; background: linear-gradient(90deg, #f0b429, var(--rw)); border-radius: 99px; transition: width .5s cubic-bezier(.4,0,.2,1); }
+.prog-pct { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; min-width: 52px; text-align: right; }
+
+/* SECTION HEADERS */
+.section-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: .85rem 1.25rem; border-radius: var(--rm);
+  margin: 2rem 0 .6rem;
+}
+.sh-id {
+  background: linear-gradient(90deg, var(--p2p-light) 0%, #f3f3fa 100%);
+  border-left: 4px solid var(--p2p);
+}
+.sh-ac {
+  background: linear-gradient(90deg, var(--rw-light) 0%, #fff8f5 100%);
+  border-left: 4px solid var(--rw);
+}
+.sh-icon { font-size: 20px; }
+.sh-id .sh-icon, .sh-id .sh-title { color: var(--p2p); }
+.sh-ac .sh-icon { color: var(--rw); }
+.sh-ac .sh-title { color: #c44a17; }
+.sh-title { font-size: 14px; font-weight: 600; letter-spacing: .01em; }
+.sh-badge {
+  font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px;
+}
+.sh-id .sh-badge { background: var(--p2p-light); color: var(--p2p); border: 0.5px solid var(--p2p-border); }
+.sh-ac .sh-badge { background: var(--rw-light); color: #c44a17; border: 0.5px solid var(--rw-border); }
+.sh-desc { font-size: 12px; margin-left: auto; font-weight: 500; }
+.sh-id .sh-desc { color: var(--p2p); }
+.sh-ac .sh-desc { color: #c44a17; }
+
+.section-prog { display: flex; align-items: center; gap: 8px; margin: 0 0 .85rem; }
+.sp-label { font-size: 12px; color: var(--text-sec); }
+.sp-bg { flex: 1; height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.sp-fill-id { height: 100%; background: var(--p2p); border-radius: 99px; transition: width .4s ease; }
+.sp-fill-ac { height: 100%; background: var(--rw); border-radius: 99px; transition: width .4s ease; }
+.sp-pct { font-size: 12px; color: var(--text-sec); min-width: 36px; text-align: right; }
+
+/* TABLE */
+.cl-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  border: 0.5px solid var(--border); border-radius: var(--rl);
+  overflow: hidden; margin-bottom: .5rem;
+}
+.cl-table thead tr { background: linear-gradient(90deg, #f2f2f8 0%, #f8f8f6 100%); }
+.cl-table th {
+  font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-sec); padding: 10px 11px; text-align: left;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.cl-table th:first-child { border-radius: var(--rl) 0 0 0; }
+.cl-table th:last-child  { border-radius: 0 var(--rl) 0 0; }
+.cl-table td {
+  padding: 11px 11px; font-size: 13px; color: var(--text);
+  border-bottom: 0.5px solid var(--border); vertical-align: top;
+}
+.cl-table tbody tr:last-child td { border-bottom: none; }
+.cl-table tbody tr:last-child td:first-child { border-radius: 0 0 0 var(--rl); }
+.cl-table tbody tr:last-child td:last-child  { border-radius: 0 0 var(--rl) 0; }
+.cl-table tbody tr:hover td { background: #f9f9ff; }
+.check-col { width: 38px; text-align: center; vertical-align: middle !important; }
+
+.item-name { font-weight: 600; font-size: 13px; color: var(--text); margin: 0 0 3px; line-height: 1.3; }
+.item-desc { font-size: 11.5px; color: var(--text-sec); line-height: 1.55; margin: 0 0 5px; font-weight: 300; }
+
+/* SELECTS */
+.cell-select {
+  width: 100%; font-size: 11.5px; font-family: 'DM Sans', sans-serif;
+  color: var(--text); background: var(--bg-sec);
+  border: 0.5px solid var(--border); border-radius: var(--r);
+  padding: 4px 6px; cursor: pointer; outline: none;
+  transition: border-color .15s; appearance: auto;
+}
+.cell-select:focus { border-color: var(--p2p); box-shadow: 0 0 0 2px rgba(45,50,130,0.08); }
+.week-sel { min-width: 90px; padding-right: 28px; }
+
+/* NOTES */
+.notes-input {
+  width: 100%; font-size: 11.5px; font-family: 'DM Sans', sans-serif;
+  color: var(--text); background: var(--bg-sec);
+  border: 0.5px solid var(--border); border-radius: var(--r);
+  outline: none; resize: none; padding: 4px 7px;
+  line-height: 1.5; min-height: 26px;
+  transition: border-color .15s; margin-top: 4px;
+}
+.notes-input:focus { border-color: var(--rw); background: var(--bg); }
+.notes-input::placeholder { color: var(--text-hint); }
+
+/* BADGES */
+.owner-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
+.owner-rw   { background: var(--rw-light); color: #c44a17; border: 0.5px solid var(--rw-border); }
+.owner-p2p  { background: var(--p2p-light); color: var(--p2p); border: 0.5px solid var(--p2p-border); }
+.owner-both { background: var(--bg-sec); color: var(--text-sec); border: 0.5px solid var(--border-med); }
+
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.dot-must { background: var(--rw); }
+.dot-high { background: #f0b429; }
+.dot-std  { background: #68b369; }
+.prio-wrap { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--text-sec); }
+
+.status-pill { display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 99px; }
+.status-open { background: var(--bg-sec); color: var(--text-sec); border: 0.5px solid var(--border-med); }
+.status-done { background: var(--green-light); color: var(--green); border: 0.5px solid var(--green-border); }
+
+.tag-new {
+  display: inline-block; font-size: 9px; font-weight: 600;
+  padding: 1px 7px; border-radius: 99px;
+  background: var(--green-light); color: var(--green);
+  border: 0.5px solid var(--green-border);
+  margin-left: 6px; vertical-align: middle;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+
+input[type="checkbox"].kick-cb { width: 16px; height: 16px; cursor: pointer; accent-color: var(--rw); }
+
+/* LEGEND */
+.legend-row {
+  display: flex; gap: 1.25rem; margin-top: 1.75rem; flex-wrap: wrap;
+  padding: .85rem 1.25rem;
+  background: linear-gradient(90deg, var(--p2p-light) 0%, #f8f5ff 50%, var(--rw-light) 100%);
+  border-radius: var(--rm); align-items: center;
+  border: 0.5px solid var(--border);
+}
+.legend-head { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-sec); margin-right: 4px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-sec); }
+
+/* FOOTER */
+.footer-band {
+  background: linear-gradient(90deg, var(--navy) 0%, var(--p2p-mid) 50%, var(--navy) 100%);
+  padding: .75rem 2.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.footer-band span { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: .04em; }
+.footer-band .sep { color: rgba(255,255,255,0.2); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--navy); color: #fff;
+  font-size: 13px; font-family: 'DM Sans', sans-serif;
+  padding: 11px 22px; border-radius: var(--rm);
+  opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 9999;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  border-left: 3px solid var(--rw);
+}
+.toast.show { opacity: 1; }
+
+/* ===================== PRINT STYLES ===================== */
+@media print {
+  @page { margin: 12mm 10mm; size: A4 landscape; }
+
+  body {
+    background: white !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  .page-wrap {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .toolbar, .toast { display: none !important; }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1d4e 0%, #2d3282 55%, #3d1f6e 100%) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .hero-inner { padding: 1.2rem 1.5rem !important; }
+  .hc-title { font-size: 20px !important; }
+
+  .body-wrap { padding: 1rem 1.5rem 1.5rem !important; }
+
+  .prog-wrap {
+    background: linear-gradient(90deg, #1a1d4e, #2d3282) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .section-header { margin-top: 1.2rem !important; }
+
+  .sh-id {
+    background: #eaebf7 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .sh-ac {
+    background: #fef0eb !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .stat-chips { gap: 8px !important; margin-bottom: 1rem !important; }
+  .sc { padding: .6rem .75rem !important; }
+  .sc .n { font-size: 20px !important; }
+
+  .cl-table th, .cl-table td { padding: 7px 8px !important; font-size: 11px !important; }
+  .item-name { font-size: 11.5px !important; }
+  .item-desc { font-size: 10.5px !important; }
+
+  .notes-input { display: block !important; border: 0.5px solid #ddd !important; background: #f9f9f9 !important; min-height: 20px !important; }
+  .cell-select { border: 0.5px solid #ddd !important; background: #f9f9f9 !important; font-size: 11px !important; }
+
+  .legend-row {
+    background: linear-gradient(90deg, #eaebf7, #f8f5ff, #fef0eb) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin-top: 1rem !important;
+    padding: .6rem 1rem !important;
+  }
+
+  .footer-band {
+    background: linear-gradient(90deg, #1a1d4e, #2d3282, #1a1d4e) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    padding: .5rem 1.5rem !important;
+  }
+
+  .sc::before {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .prog-fill-bar {
+    background: linear-gradient(90deg, #f0b429, #e85d26) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .owner-rw, .owner-p2p, .owner-both,
+  .status-done, .status-open,
+  .tag-new, .sh-badge, .week-badge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HERO HEADER -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="logo-slot" id="rw-slot">
+        <input type="file" id="rw-file" accept="image/*">
+        <img id="rw-img" class="logo-img" style="display:none" alt="Cygnet logo">
+        <div class="logo-placeholder" id="rw-ph"><i class="ti ti-upload"></i> Cygnet logo</div>
+        <span class="logo-clear" id="rw-clr">✕</span>
+      </div>
+
+      <div class="hc">
+        <div class="hc-eyebrow">Cygnet × P2P Connect</div>
+        <div class="hc-title">Partner Search <span>Kickoff</span></div>
+        <div class="hc-sub">Identify &amp; Recruit <span style="opacity:.4">→</span> Activation</div>
+      </div>
+
+      <div class="logo-slot" id="p2p-slot">
+        <input type="file" id="p2p-file" accept="image/*">
+        <img id="p2p-img" class="logo-img" style="display:none" alt="P2P Connect logo">
+        <div class="logo-placeholder" id="p2p-ph"><i class="ti ti-upload"></i> P2P Connect logo</div>
+        <span class="logo-clear" id="p2p-clr">✕</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body-wrap">
+
+    <div class="toolbar">
+      <button class="tb-btn primary" onclick="saveData()"><i class="ti ti-device-floppy"></i> Save progress</button>
+      <button class="tb-btn" onclick="loadData(true)"><i class="ti ti-refresh"></i> Reload saved</button>
+      <button class="tb-btn danger" onclick="resetAll()"><i class="ti ti-trash"></i> Reset all</button>
+      <span class="save-status">
+        <span class="save-dot unsaved" id="save-dot"></span>
+        <span id="save-label">Unsaved changes</span>
+      </span>
+    </div>
+
+    <div class="stat-chips">
+      <div class="sc"><span class="n" id="total-n">26</span><span class="l">Total Items</span></div>
+      <div class="sc"><span class="n accent" id="done-n">0</span><span class="l">Completed</span></div>
+      <div class="sc"><span class="n" id="pending-n">26</span><span class="l">Pending</span></div>
+      <div class="sc"><span class="n" id="must-n">—</span><span class="l">Must-Have</span></div>
+    </div>
+
+    <div class="prog-wrap">
+      <span class="prog-label">Overall Readiness</span>
+      <div class="prog-bg"><div class="prog-fill-bar" id="prog-fill" style="width:0%"></div></div>
+      <span class="prog-pct" id="prog-pct">0 / 26</span>
+    </div>
+
+    <!-- STAGE 1 -->
+    <div class="section-header sh-id">
+      <i class="ti ti-radar sh-icon"></i>
+      <span class="sh-title">Stage 1 — Identify &amp; Recruit</span>
+      <span class="sh-badge">Pre-Search Gate</span>
+      <span class="sh-desc" id="id-label">0 / 19 done</span>
+    </div>
+    <div class="section-prog">
+      <span class="sp-label">Section progress</span>
+      <div class="sp-bg"><div class="sp-fill-id" id="id-fill" style="width:0%"></div></div>
+      <span class="sp-pct" id="id-pct">0%</span>
+    </div>
+    <table class="cl-table" id="id-table"></table>
+
+    <!-- STAGE 2 -->
+    <div class="section-header sh-ac">
+      <i class="ti ti-rocket sh-icon"></i>
+      <span class="sh-title">Stage 2 — Activation</span>
+      <span class="sh-badge">Go-Live Readiness</span>
+      <span class="sh-desc" id="ac-label">0 / 7 done</span>
+    </div>
+    <div class="section-prog">
+      <span class="sp-label">Section progress</span>
+      <div class="sp-bg"><div class="sp-fill-ac" id="ac-fill" style="width:0%"></div></div>
+      <span class="sp-pct" id="ac-pct">0%</span>
+    </div>
+    <table class="cl-table" id="ac-table"></table>
+
+    <div class="legend-row">
+      <span class="legend-head">Priority:</span>
+      <span class="legend-item"><span class="dot dot-must"></span> Must-have</span>
+      <span class="legend-item"><span class="dot dot-high"></span> High</span>
+      <span class="legend-item"><span class="dot dot-std"></span> Standard</span>
+      <div style="flex:1"></div>
+      <span class="legend-item"><span class="owner-badge owner-rw">Cygnet</span></span>
+      <span class="legend-item"><span class="owner-badge owner-p2p">P2P Connect</span></span>
+      <span class="legend-item"><span class="owner-badge owner-both">Joint</span></span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-band">
+    <span>Cygnet × P2P Connect</span>
+    <span class="sep">·</span>
+    <span>Partner Search Kickoff</span>
+    <span class="sep">·</span>
+    <span>Progress saved to browser · p2pconnect.in</span>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = "cygnet_p2p_checklist_v1";
+const ID = "id", AC = "ac";
+
+const OWNERS = ["Cygnet","P2P Connect","Joint"];
+const FUNCS  = ["—","Marketing","Product","Finance","Sales","Pre-Sales","Operations","Channel","Legal"];
+const WEEKS  = ["—","Week 1","Week 2","Week 3","Week 4","Week 5","Week 6"];
+
+const items = [
+  {sec:ID,name:"Market Selection",desc:"Define priority markets and geographies before partner search begins — vertical focus (e.g. BFSI, Retail, Manufacturing for Cygnet), city-tier prioritisation (Tier 1 / Tier 2), and exclusion zones that conflict with direct sales motion. This must be locked first — everything else is built on top of it.",owner:"Joint",prio:"must",isnew:true},
+  {sec:ID,name:"Ideal Partner Profile (IPP)",desc:"Define target partner type — VAR, SI, MSP, F&B consultant, system integrator. Include size, geography, revenue band, existing product stack and customer base.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Ideal Customer Profile (ICP)",desc:"End-customer definition: company size, industry vertical (BFSI, Retail, Manufacturing, Logistics), compliance trigger (e-invoicing mandate), ARR range, decision maker (CFO / Finance Head / IT Head).",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Existing Customer Base — Partner Mining",desc:"Analyse Cygnet's current customer database to identify ERP resellers, tax consultants, system integrators or IT vendors already embedded in the customer base. Warmest starting point for partner recruitment.",owner:"Cygnet",prio:"must",isnew:true},
+  {sec:ID,name:"Channel Champion — Named Sales Org Contact",desc:"Identify a senior named champion from the Cygnet sales org who owns the channel relationship, joins partner calls and is the credible face partners trust.",owner:"Cygnet",prio:"must",isnew:true},
+  {sec:ID,name:"Market Opportunity Brief (TAM / SAM)",desc:"Crisp TAM slide with addressable e-invoicing and compliance segments, growth rates and whitespace across target markets. Partners need this to justify internal investment to their own leadership.",owner:"Cygnet",prio:"must",isnew:true},
+  {sec:ID,name:"Competitive Battlecard",desc:"How Cygnet stacks up vs. key e-invoicing and compliance competitors in target markets. Partners face these objections before Cygnet does — they need ammunition on day one.",owner:"Cygnet",prio:"must",isnew:true},
+  {sec:ID,name:"Reference Customer Stories (2–3 wins)",desc:"Named or anonymised case studies — an enterprise customer, an SMB deployment, a government-mandate driven win. Social proof is the fastest trust-builder.",owner:"Cygnet",prio:"must",isnew:true},
+  {sec:ID,name:"Deal Cycle & Win Rate Data",desc:"Average sales cycle length, typical deal size, close rate from demo to contract. Helps partners model real payback timeline.",owner:"Cygnet",prio:"high",isnew:true},
+  {sec:ID,name:"Partner Enablement & Certification Plan",desc:"Training modules required, time-to-productivity estimate, certified partner badge process. Sets expectations upfront.",owner:"Cygnet",prio:"high",isnew:true},
+  {sec:ID,name:"Product & Pricing Parity",desc:"Differentiated partner pricing vs. Cygnet direct price point. Partners expect a commercial edge to justify co-selling effort.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Channel Conflict Policy",desc:"Rules of engagement between direct sales and channel — territory splits, deal registration priority, conflict resolution SOP.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Show Me The Money",desc:"Partner earning model: margin %, deal registration bonus, recurring rev share, co-sell incentive. Shareable calculator preferred.",owner:"Joint",prio:"must",isnew:false},
+  {sec:ID,name:"GTM Budget Allocation (Spiff / MDF / Through-Partner)",desc:"Budgets assigned for Partner Spiff, Through-Partner marketing activities and MDF program.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Sales Team Incentive Framework",desc:"Defined incentives for Cygnet sales team when pipeline is channel-driven. Prevents counter-force to channel.",owner:"Cygnet",prio:"high",isnew:false},
+  {sec:ID,name:"Channel Partner Agreement",desc:"Template contract: T&Cs, territory, exclusivity, payment terms, IP ownership, exit clause. Ready before any partner is shortlisted.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Partner Pitch Deck",desc:"Co-branded deck: why Cygnet for e-invoicing, partner opportunity, compliance market size in target geographies, support model, onboarding timeline.",owner:"Joint",prio:"must",isnew:false},
+  {sec:ID,name:"Partner Onboarding Kit",desc:"Welcome pack: product datasheets, competitive battlecards, objection handling guide, brand assets and sales playbook.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:ID,name:"Product Demo (Live + Recorded)",desc:"Live: P2P Connect team trained on demo flows — e-invoicing, compliance workflows, ERP integrations, reporting. Recorded: hosted 5–7 min video covering key modules and integrations.",owner:"Joint",prio:"must",isnew:false},
+  {sec:AC,name:"Lead Sharing Commitment (5–8 leads / partner)",desc:"Cygnet sales team commits to sharing 5–8 qualified leads per partner in activation stage to build early confidence and pipeline momentum.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:AC,name:"Partner–Sales Working Model",desc:"Defined collaboration model: pre-sales coverage, product support, joint call process, pipeline reviews. Critical for handholding in first 3–5 deals.",owner:"Joint",prio:"must",isnew:false},
+  {sec:AC,name:"Customer Acquisition Offer + Partner Seller Spiff",desc:"Customer-facing acquisition offer and seller-level spiff for partner reps. Without this, activation enthusiasm drops after the first few weeks.",owner:"Cygnet",prio:"must",isnew:false},
+  {sec:AC,name:"Demand Generation Playbook",desc:"Digital sales, small-scale events, webinars and Through-Partner marketing tactics planned. Calendar and budget owner defined per activity.",owner:"Joint",prio:"high",isnew:false},
+  {sec:AC,name:"PLM Tool Set-up",desc:"Partner portal or PRM configured — deal registration, MDF tracker, lead sharing, partner dashboard live before first partner onboards.",owner:"P2P Connect",prio:"high",isnew:false},
+  {sec:AC,name:"Support & Escalation SLA",desc:"Partner support tiers, SLA response times, dedicated CSM or Partner Success contact at Cygnet defined and communicated.",owner:"Cygnet",prio:"high",isnew:false},
+  {sec:AC,name:"Customer Triggers / Compelling Events",desc:"Documented list of trigger events that signal a prospect is ready to buy — compliance deadlines, system migrations, funding rounds, leadership changes, audits. Equips partner sellers to prioritise outreach and time conversations for maximum impact.",owner:"Cygnet",prio:"must",isnew:true},
+  {sec:AC,name:"Go-to-Market Calendar",desc:"Month-by-month plan: outreach start, first partner activation target, co-marketing events, pipeline review cadence.",owner:"Joint",prio:"std",isnew:false}
+];
+
+const prioMap = {
+  must:{label:"Must-have",cls:"dot-must"},
+  high:{label:"High",cls:"dot-high"},
+  std:{label:"Standard",cls:"dot-std"}
+};
+
+let state = items.map(it => ({ checked:false, owner:it.owner, func:"—", week:"—", notes:"" }));
+let logos = {rw:null, p2p:null};
+
+function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2600);}
+function markDirty(){document.getElementById("save-dot").classList.add("unsaved");document.getElementById("save-label").textContent="Unsaved changes";}
+function markSaved(ts){document.getElementById("save-dot").classList.remove("unsaved");document.getElementById("save-label").textContent="Saved "+ts;}
+
+function saveData(){
+  const ts=new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"});
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify({state,logos,savedAt:ts}));markSaved(ts);toast("Progress saved ✓");}
+  catch(e){toast("Save failed: "+e.message);}
+}
+function loadData(manual){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw){if(manual)toast("No saved data found");return;}
+    const d=JSON.parse(raw);
+    if(d.state&&d.state.length===items.length) state=d.state;
+    if(d.logos) logos=d.logos;
+    applyLogos(); markSaved(d.savedAt||"previously");
+    render(); updateStats();
+    if(manual)toast("Progress loaded ✓");
+  }catch(e){if(manual)toast("Load failed: "+e.message);}
+}
+function resetAll(){
+  if(!confirm("Reset all data? This cannot be undone."))return;
+  state=items.map(it=>({checked:false,owner:it.owner,func:"—",week:"—",notes:""}));
+  logos={rw:null,p2p:null};
+  localStorage.removeItem(STORAGE_KEY);
+  applyLogos();markDirty();render();updateStats();toast("Reset complete");
+}
+
+function applyLogos(){
+  ["rw","p2p"].forEach(k=>{
+    const img=document.getElementById(k+"-img"),ph=document.getElementById(k+"-ph"),clr=document.getElementById(k+"-clr");
+    if(logos[k]){img.src=logos[k];img.style.display="block";ph.style.display="none";clr.style.display="flex";}
+    else{img.style.display="none";ph.style.display="flex";clr.style.display="none";}
+  });
+}
+function setupLogo(k){
+  const fi=document.getElementById(k+"-file"),ph=document.getElementById(k+"-ph"),img=document.getElementById(k+"-img"),clr=document.getElementById(k+"-clr");
+  ph.onclick=()=>fi.click(); img.onclick=()=>fi.click();
+  clr.onclick=e=>{e.stopPropagation();logos[k]=null;applyLogos();markDirty();};
+  fi.addEventListener("change",e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();r.onload=ev=>{logos[k]=ev.target.result;applyLogos();markDirty();};r.readAsDataURL(f);
+  });
+}
+
+function makeSelect(options,value,cls,onChange){
+  const sel=document.createElement("select"); sel.className="cell-select "+cls;
+  options.forEach(o=>{const opt=document.createElement("option");opt.value=o;opt.textContent=o;if(o===value)opt.selected=true;sel.appendChild(opt);});
+  sel.addEventListener("change",e=>{onChange(e.target.value);markDirty();});
+  return sel;
+}
+
+function buildHeader(tbl,showWeek){
+  const thead=tbl.createTHead(),tr=thead.insertRow();
+  const cols=showWeek
+    ?[["",38],["Deliverable","22%"],["What Needs to Be Ready",""],["Owner","11%"],["Function","10%"],["Week","10%"],["Priority","9%"],["Status","7%"]]
+    :[["",38],["Deliverable","22%"],["What Needs to Be Ready",""],["Owner","11%"],["Function","10%"],["Priority","9%"],["Status","7%"]];
+  cols.forEach(([txt,w])=>{
+    const th=document.createElement("th");th.textContent=txt;
+    if(typeof w==="number")th.style.width=w+"px";else if(w)th.style.width=w;
+    tr.appendChild(th);
+  });
+}
+
+function render(){
+  ["id-table","ac-table"].forEach(id=>{const t=document.getElementById(id);t.innerHTML="";});
+  const idTbl=document.getElementById("id-table"),acTbl=document.getElementById("ac-table");
+  buildHeader(idTbl,true); buildHeader(acTbl,false);
+  const idBody=idTbl.createTBody(),acBody=acTbl.createTBody();
+
+  items.forEach((item,i)=>{
+    const s=state[i],p=prioMap[item.prio],done=s.checked,isID=item.sec===ID;
+    const tr=document.createElement("tr");
+
+    // checkbox
+    const tdCb=document.createElement("td");tdCb.className="check-col";
+    const cb=document.createElement("input");cb.type="checkbox";cb.className="kick-cb";cb.checked=done;
+    cb.setAttribute("aria-label","Mark "+item.name+" complete");
+    cb.addEventListener("change",()=>{state[i].checked=cb.checked;markDirty();updateStats();render();});
+    tdCb.appendChild(cb);tr.appendChild(tdCb);
+
+    // name
+    const tdName=document.createElement("td");
+    const nameP=document.createElement("p");nameP.className="item-name";
+    if(done)nameP.style.cssText="text-decoration:line-through;opacity:0.4";
+    nameP.textContent=item.name;
+    if(item.isnew){const tag=document.createElement("span");tag.className="tag-new";tag.textContent="new";nameP.appendChild(tag);}
+    tdName.appendChild(nameP);tr.appendChild(tdName);
+
+    // desc + notes
+    const tdDesc=document.createElement("td");
+    const descP=document.createElement("p");descP.className="item-desc";descP.textContent=item.desc;
+    const ta=document.createElement("textarea");ta.className="notes-input";ta.rows=1;
+    ta.placeholder="Notes, deadline, assignee…";ta.value=s.notes||"";
+    ta.addEventListener("input",()=>{state[i].notes=ta.value;ta.style.height="auto";ta.style.height=ta.scrollHeight+"px";markDirty();});
+    tdDesc.appendChild(descP);tdDesc.appendChild(ta);tr.appendChild(tdDesc);
+
+    // owner
+    const tdO=document.createElement("td");
+    tdO.appendChild(makeSelect(OWNERS,s.owner||item.owner,"owner-sel",v=>{state[i].owner=v;}));
+    tr.appendChild(tdO);
+
+    // function
+    const tdF=document.createElement("td");
+    tdF.appendChild(makeSelect(FUNCS,s.func||"—","func-sel",v=>{state[i].func=v;}));
+    tr.appendChild(tdF);
+
+    // week (Stage 1 only)
+    if(isID){
+      const tdW=document.createElement("td");
+      tdW.appendChild(makeSelect(WEEKS,s.week||"—","week-sel",v=>{state[i].week=v;}));
+      tr.appendChild(tdW);
+    }
+
+    // priority
+    const tdP=document.createElement("td");
+    const pw=document.createElement("span");pw.className="prio-wrap";
+    const dot=document.createElement("span");dot.className="dot "+p.cls;
+    pw.appendChild(dot);pw.appendChild(document.createTextNode(" "+p.label));
+    tdP.appendChild(pw);tr.appendChild(tdP);
+
+    // status
+    const tdS=document.createElement("td");
+    const pill=document.createElement("span");pill.className="status-pill "+(done?"status-done":"status-open");pill.textContent=done?"Done":"Open";
+    tdS.appendChild(pill);tr.appendChild(tdS);
+
+    (isID?idBody:acBody).appendChild(tr);
+  });
+
+  document.querySelectorAll(".notes-input").forEach(ta=>{if(ta.value){ta.style.height="auto";ta.style.height=ta.scrollHeight+"px";}});
+}
+
+function updateStats(){
+  const total=items.length,done=state.filter(s=>s.checked).length;
+  const must=items.filter(it=>it.prio==="must").length;
+  const mustDone=items.filter((it,i)=>it.prio==="must"&&state[i].checked).length;
+  document.getElementById("total-n").textContent=total;
+  document.getElementById("done-n").textContent=done;
+  document.getElementById("pending-n").textContent=total-done;
+  document.getElementById("must-n").textContent=mustDone+"/"+must;
+  const pct=Math.round(done/total*100);
+  document.getElementById("prog-fill").style.width=pct+"%";
+  document.getElementById("prog-pct").textContent=done+" / "+total;
+
+  const idItems=items.filter(it=>it.sec===ID);
+  const idDone=idItems.filter(it=>state[items.indexOf(it)].checked).length;
+  const idPct=Math.round(idDone/idItems.length*100);
+  document.getElementById("id-fill").style.width=idPct+"%";
+  document.getElementById("id-pct").textContent=idPct+"%";
+  document.getElementById("id-label").textContent=idDone+" / "+idItems.length+" done";
+
+  const acItems=items.filter(it=>it.sec===AC);
+  const acDone=acItems.filter(it=>state[items.indexOf(it)].checked).length;
+  const acPct=Math.round(acDone/acItems.length*100);
+  document.getElementById("ac-fill").style.width=acPct+"%";
+  document.getElementById("ac-pct").textContent=acPct+"%";
+  document.getElementById("ac-label").textContent=acDone+" / "+acItems.length+" done";
+}
+
+setupLogo("rw"); setupLogo("p2p");
+render(); updateStats(); loadData(false);
+</script>
+</body>
+</html>
